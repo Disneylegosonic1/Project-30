@@ -10,6 +10,8 @@ class Box{
       this.width = width;
       this.height = height;
       World.add(world, this.body);
+      this.image = loadImage("square.png");
+      this.visibility = 255;
     }
     display(){
       
@@ -18,19 +20,20 @@ class Box{
       var angle = this.angle;
       push();
       if (this.body.speed < 3) {
-          rectMode(CENTER);
-          translate(pos.x, pos.y);
-          rotate(angle);
+          imageMode(CENTER);
+          // translate(pos.x, pos.y);
+          // rotate(angle);
           fill("blue");
-          stroke(border);
+          stroke("black");
           strokeWeight(4);
-          rect(0, 0, this.width, this.height);
+          image(this.image, pos.x, pos.y, this.width, this.height);
           pop();
       } else {
           push();
           World.remove(world, this.body);
-          this.visibility = this.visibility - 1;
+          this.visibility = this.visibility - 10;
           tint(255, this.visibility);
+          image(this.image, pos.x, pos.y, this.width, this.height);
           pop();
       }
     }
